@@ -25,14 +25,34 @@
                                     <action selector="tappedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8ru-vp-FMq"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DJw-1M-n7z">
+                                <rect key="frame" x="10" y="30" width="47" height="30"/>
+                                <state key="normal" title="Toggle"/>
+                                <connections>
+                                    <action selector="tapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lnn-08-SJP"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cat" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lqG-um-qTr">
+                                <rect key="frame" x="10" y="70" width="27" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="EEa-wf-qdB" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="0pM-6z-eJ4"/>
+                            <constraint firstItem="DJw-1M-n7z" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="LTr-6t-Tfp"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="EEa-wf-qdB" secondAttribute="bottom" constant="10" id="N5n-Di-wla"/>
+                            <constraint firstItem="DJw-1M-n7z" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="aLO-M1-lK5"/>
+                            <constraint firstItem="lqG-um-qTr" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="d3S-lP-HL9"/>
+                            <constraint firstItem="lqG-um-qTr" firstAttribute="top" secondItem="DJw-1M-n7z" secondAttribute="bottom" constant="10" id="fmd-EH-rhK"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="toggleLabel" destination="lqG-um-qTr" id="ebS-my-O3Q"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

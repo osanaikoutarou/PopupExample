@@ -6,52 +6,80 @@
 //  Copyright © 2019 osanai. All rights reserved.
 //
 
+// 使用例 1
+//
+// _ = PopupView.create(innerView: hogeView)
+//              .addClseIcon(at: .left)
+//              .setTapOutsideActionMode(tapOutsideActionMode: .close)
+//              .tapOutsideAction {
+//                  print("🙂")
+//              }
+//              .show(in: view.window!)
+
+// 使用例 2
+//
+// let popupView = PopupView.create(innerView: hogeView, position: .right, tapOutsideActionMode: PopupView.TapOutsideActionMode.close)
+// _ = popupView.show(in: view.window!)
+
+
 import UIKit
 
-class PopupView: UIControl {
+final class PopupView: UIControl {
 
-    let duration: TimeInterval = 0.3
-
-    @IBOutlet weak var containerControl: UIControl!
-
+    var duration: TimeInterval = 0.3
     var innerView: UIView?
 
-    /// 外側をタップした時
+    /// 外側をタップした時の挙動
     enum TapOutsideActionMode {
         case close          // 閉じる
         case nothingToDo    // 何もしない
     }
     var tapOutsideActionMode: TapOutsideActionMode = .nothingToDo
 
-    var tapOutsideAction: (() -> Void)?
-
     /// 閉じるボタンの場所
     enum CloseIconPosition {
-        case left, right, none
+        case left
+        case right
+        case none
     }
     var closeIconPosition: CloseIconPosition = .none
     var closeIconControl: UIControl!
 
-    // MARK: -
+    // MARK: - Option
+
+    /// 閉じる以外に何かする場合
+    var tapOutsideAction: (() -> Void)?
+
+    // MARK: - Creation
 
     func setup(innerView: UIView) {
         self.innerView = innerView
-
-        if let window = UIApplication.shared.delegate?.window {
-            frame = window?.bounds ?? .zero
-        }
         backgroundColor = UIColor(white: 0, alpha: 0.7)
-        containerControl.addSubview(innerView)
-        innerView.translatesAutoresizingMaskIntoConstraints = true
-        innerView.center = containerControl.center
+        addSubview(innerView)
+        innerView.translatesAutoresizingMaskIntoConstraints = false
+        innerView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        innerView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         innerView.isUserInteractionEnabled = true
+
+        addTarget(self, action: #selector(tapped(_ :)), for: .touchUpInside)
     }
 
     static func create(innerView: UIView) -> PopupView {
-        let popupView: PopupView = UINib(nibName: "PopupView", bundle: nil).instantiate(withOwner: self, options: nil).first as! PopupView
+        let popupView = PopupView(frame: UIApplication.shared.keyWindow?.bounds ?? .zero)
         popupView.setup(innerView: innerView)
         return popupView
     }
+    static func create(innerView: UIView, position: CloseIconPosition, tapOutsideActionMode: TapOutsideActionMode) -> PopupView {
+        let popupView = PopupView(frame: UIApplication.shared.keyWindow?.bounds ?? .zero)
+        popupView.setup(innerView: innerView)
+
+        popupView.closeIconPosition = position
+        popupView.addCloseIcon()
+        popupView.tapOutsideActionMode = tapOutsideActionMode
+
+        return popupView
+    }
+
     func addClseIcon(at position:CloseIconPosition) -> PopupView {
         closeIconPosition = position
         addCloseIcon()
@@ -87,17 +115,33 @@ class PopupView: UIControl {
 
 extension PopupView {
 
+    func closeButtonImageView() -> UIImageView {
+        return UIImageView(image: UIImage(named: "btn_close"), contentMode: .center)
+    }
 
     func addCloseIcon() {
         guard let innerView = innerView else {
             return
         }
-        closeIconControl = UIControl(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
-        closeIconControl.addSubviewAndBind(view: UIImageView(image: UIImage(named: "btn_close"), contentMode: .center))
+        guard closeIconPosition != .none else {
+            return
+        }
 
-        containerControl.addSubview(closeIconControl)
-        closeIconControl.translatesAutoresizingMaskIntoConstraints = true
-        closeIconControl.center = innerView.frame.origin
+        closeIconControl = UIControl(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+        let imageView = closeButtonImageView()
+        closeIconControl.addSubview(imageView)
+        imageView.bindFrameToSuperviewBounds()
+        addSubview(closeIconControl)
+
+        closeIconControl.translatesAutoresizingMaskIntoConstraints = false
+        if closeIconPosition == .left {
+            closeIconControl.centerXAnchor.constraint(equalTo: innerView.leadingAnchor).isActive = true
+            closeIconControl.centerYAnchor.constraint(equalTo: innerView.topAnchor).isActive = true
+        }
+        if closeIconPosition == .right {
+            closeIconControl.centerXAnchor.constraint(equalTo: innerView.trailingAnchor).isActive = true
+            closeIconControl.centerYAnchor.constraint(equalTo: innerView.topAnchor).isActive = true
+        }
         closeIconControl.addTarget(self, action: #selector(tappedCloseButton), for: UIControl.Event.touchUpInside)
     }
 
@@ -128,10 +172,6 @@ private extension UIImageView {
     }
 }
 private extension UIView {
-    func addSubviewAndBind(view: UIView) {
-        addSubview(view)
-        view.bindFrameToSuperviewBounds()
-    }
 
     @objc
     func bindFrameToSuperviewBounds() {
@@ -144,5 +184,13 @@ private extension UIView {
         self.bottomAnchor.constraint(equalTo: superview.bottomAnchor, constant: 0).isActive = true
         self.leadingAnchor.constraint(equalTo: superview.leadingAnchor, constant: 0).isActive = true
         self.trailingAnchor.constraint(equalTo: superview.trailingAnchor, constant: 0).isActive = true
+    }
+}
+
+// MARK: Utility
+
+extension UINib {
+    static func create(nibName: String, owner: Any?) -> UIView? {
+        return UINib(nibName: nibName, bundle: nil).instantiate(withOwner: owner, options: nil).first as? UIView
     }
 }

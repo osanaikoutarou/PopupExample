@@ -7,17 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DA272F7A228BACD00099C300 /* PopupA.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA272F79228BACD00099C300 /* PopupA.swift */; };
 		DA57D56F228A6DE800DD5DE2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA57D56E228A6DE800DD5DE2 /* AppDelegate.swift */; };
 		DA57D571228A6DE800DD5DE2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA57D570228A6DE800DD5DE2 /* ViewController.swift */; };
 		DA57D574228A6DE800DD5DE2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA57D572228A6DE800DD5DE2 /* Main.storyboard */; };
 		DA57D576228A6DEA00DD5DE2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA57D575228A6DEA00DD5DE2 /* Assets.xcassets */; };
 		DA57D579228A6DEA00DD5DE2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA57D577228A6DEA00DD5DE2 /* LaunchScreen.storyboard */; };
-		DA57D582228A6E5600DD5DE2 /* PopupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA57D581228A6E5600DD5DE2 /* PopupView.xib */; };
 		DA57D584228A831D00DD5DE2 /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA57D583228A831D00DD5DE2 /* PopupView.swift */; };
 		DA57D588228AA19C00DD5DE2 /* PopupA.xib in Resources */ = {isa = PBXBuildFile; fileRef = DA57D587228AA19C00DD5DE2 /* PopupA.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DA272F79228BACD00099C300 /* PopupA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupA.swift; sourceTree = "<group>"; };
 		DA57D56B228A6DE800DD5DE2 /* PopupExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PopupExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA57D56E228A6DE800DD5DE2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DA57D570228A6DE800DD5DE2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -25,7 +26,6 @@
 		DA57D575228A6DEA00DD5DE2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DA57D578228A6DEA00DD5DE2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DA57D57A228A6DEA00DD5DE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DA57D581228A6E5600DD5DE2 /* PopupView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopupView.xib; sourceTree = "<group>"; };
 		DA57D583228A831D00DD5DE2 /* PopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
 		DA57D587228AA19C00DD5DE2 /* PopupA.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopupA.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -74,9 +74,9 @@
 		DA57D580228A6E4400DD5DE2 /* Popup */ = {
 			isa = PBXGroup;
 			children = (
-				DA57D581228A6E5600DD5DE2 /* PopupView.xib */,
 				DA57D583228A831D00DD5DE2 /* PopupView.swift */,
 				DA57D587228AA19C00DD5DE2 /* PopupA.xib */,
+				DA272F79228BACD00099C300 /* PopupA.swift */,
 			);
 			path = Popup;
 			sourceTree = "<group>";
@@ -140,7 +140,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA57D579228A6DEA00DD5DE2 /* LaunchScreen.storyboard in Resources */,
-				DA57D582228A6E5600DD5DE2 /* PopupView.xib in Resources */,
 				DA57D576228A6DEA00DD5DE2 /* Assets.xcassets in Resources */,
 				DA57D574228A6DE800DD5DE2 /* Main.storyboard in Resources */,
 				DA57D588228AA19C00DD5DE2 /* PopupA.xib in Resources */,
@@ -154,6 +153,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA272F7A228BACD00099C300 /* PopupA.swift in Sources */,
 				DA57D584228A831D00DD5DE2 /* PopupView.swift in Sources */,
 				DA57D571228A6DE800DD5DE2 /* ViewController.swift in Sources */,
 				DA57D56F228A6DE800DD5DE2 /* AppDelegate.swift in Sources */,
